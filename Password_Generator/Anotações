@@ -1,0 +1,32 @@
+TODO----------------------------------------------------------------------------------
+
+INCLUIR:
+	-LOWER OK
+	-UPPER OK
+	-NUMBER OK
+	-SYMBOL OK
+MONTAR SENHA ALEATORIA OK
+JUNTAR A OPCOES DO USUARIO OK ---- 09/04
+FAZER COM QUE A SENHA SE MISTURE OK
+SELECIONAR O TAMANHO DA SENHA OK
+VARIAR DE ACORDO COM O MIN E O MAX OK
+ENTRADA USER PARA LOCAL DE SALVAR SENHA OK
+SALVAR SENHA TXT OK
+TAMANHO DA SENHA CASO NÃO SEJA ACEITADAS TODAS AS ALTERNATIVAS
+
+MELHORIA-----------------------------------------------------------------------------
+
+MELHORAR A ESCRITA DA PREVIEWINTERFACE OK
+MUDAR O NOME DA VARIAVEL SENHA OK
+
+TESTAR-------------------------------------------------------------------------------
+EMBARALHAR SENHA COM ARRAYLIST
+
+5
+100
+y
+y
+y
+y
+C:\Users\Lucas Lima\Desktop
+
