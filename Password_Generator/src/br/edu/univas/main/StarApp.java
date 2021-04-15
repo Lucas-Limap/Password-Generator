@@ -19,8 +19,6 @@ public class StarApp {
 	static FeaturePassword password = new FeaturePassword ();
 	
 	public static void main(String[] args) throws IOException {
-		String choise = "";
-		
 		view.printInitialMenu();
 		
 		//PASSWORD LEGTH
@@ -32,48 +30,62 @@ public class StarApp {
 		
 		randomLength(password.getMinLength(), password.getMaxLength());
 		
-		System.out.println(password.randomLength);
-		
-		//CARACTERISTICAS DA SENHA QTD DE CADA CARACTERER
-		
-				int lower = password.randomLength*40/100;
-				int upper = password.randomLength*25/100;
-				int number = password.randomLength*25/100;
-				int symbol = password.randomLength*10/100;
-				
-				if (symbol == 0) {
-					symbol++;
-				}
+		System.out.println(password.randomLength); //TEMP
+
+		//PASSWORD LENGTH CASES
+		charLength();
 		
 		//PASSWORD CARACTERS
 		view.printLowerCase();
-		choise = input.nextLine();
-			if (choise.equalsIgnoreCase("Y")) {
-				choiseLowerCase(lower);
-				password.setPassword(choiseLowerCase(lower));
+		password.setChoise(input.nextLine());
+			if (password.getChoise().equalsIgnoreCase("S")) {
+				choiseLowerCase(password.lowerLength);
+				password.setPassword(choiseLowerCase(password.lowerLength));
 			}
-	
+			
+			if (password.getChoise().equalsIgnoreCase("N")) {
+				choiseLowerCase(password.lowerLength);
+				password.setPassword(choiseLowerCase(0));
+				password.upperLength = password.lowerLength + password.upperLength;
+				
+			}
+			
 		view.printUpperCase();
-			choise = input.nextLine();
-			if (choise.equalsIgnoreCase("Y")) {
-				choiseUpperCase(upper);	
-				password.setPassword(choiseUpperCase(upper).concat(password.getPassword()));
+		password.setChoise(input.nextLine());
+			 if (password.getChoise().equalsIgnoreCase("S")) {
+				choiseUpperCase(password.upperLength);	
+				password.setPassword(choiseUpperCase(password.upperLength).concat(password.getPassword()));
 		}
+			 if (password.getChoise().equalsIgnoreCase("N")) {
+					choiseUpperCase(password.upperLength);	
+					password.setPassword(choiseUpperCase(0).concat(password.getPassword()));
+					password.numberLength = password.numberLength + password.upperLength;
+			}
 		
 		view.printNumberCase();
-			choise = input.nextLine();
-			if (choise.equalsIgnoreCase("Y")) {
-				choiseNumberCase(number);	
-				password.setPassword(choiseNumberCase(number).concat(password.getPassword()));
+		password.setChoise(input.nextLine());
+			if (password.getChoise().equalsIgnoreCase("S")) {
+				choiseNumberCase(password.numberLength);	
+				password.setPassword(choiseNumberCase(password.numberLength).concat(password.getPassword()));
+		}
+			if (password.getChoise().equalsIgnoreCase("N")) {
+				choiseUpperCase(password.upperLength);	
+				password.setPassword(choiseUpperCase(0).concat(password.getPassword()));
+				password.symbolLength = password.symbolLength + password.numberLength;
 		}
 		
 		view.printSymbolCase();
-			choise = input.nextLine();
-			if (choise.equalsIgnoreCase("Y")) {
-				choiseSymbolCase(symbol);	
-				password.setPassword(choiseSymbolCase(symbol).concat(password.getPassword()));
+		password.setChoise(input.nextLine());
+			if (password.getChoise().equalsIgnoreCase("S")) {
+				choiseSymbolCase(password.symbolLength);	
+				password.setPassword(choiseSymbolCase(password.symbolLength).concat(password.getPassword()));
 		}
-		
+			if (password.getChoise().equalsIgnoreCase("N")) {
+				choiseUpperCase(password.upperLength);	
+				password.setPassword(choiseUpperCase(0).concat(password.getPassword()));
+				
+		}
+
 		shuffleString(password.getPassword());
 			
 		view.printSaveMesseger();
@@ -162,5 +174,16 @@ public class StarApp {
 	        temp += letters.get(i);
 	    }
 	    password.setPassword(temp);
+	
+	}public static void charLength () {
+		password.lowerLength = password.randomLength*50/100;
+		password.upperLength = password.randomLength*20/100;
+		password.numberLength = password.randomLength*20/100;
+		password.symbolLength = password.randomLength*10/100;
+				
+		if (password.symbolLength == 0) {
+				password.symbolLength++;
+		}
+		
 	}
 }

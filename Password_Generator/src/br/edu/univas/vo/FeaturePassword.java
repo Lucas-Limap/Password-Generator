@@ -6,8 +6,21 @@ public class FeaturePassword {
 	private String saveLocal;
 	private int minLength;
 	private int maxLength;
+	private String choise;
 	public int randomLength;
+	public int lowerLength;
+	public int upperLength;
+	public int numberLength;
+	public int symbolLength;
 	
+	public String getChoise() {
+		return choise;
+	}
+
+	public void setChoise(String choise) {
+		this.choise = choise;
+	}
+
 	public String getPassword() {
 		return password;
 	}
