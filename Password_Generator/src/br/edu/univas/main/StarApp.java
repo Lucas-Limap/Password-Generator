@@ -30,8 +30,6 @@ public class StarApp {
 		
 		randomLength(password.getMinLength(), password.getMaxLength());
 		
-		System.out.println(password.randomLength); //TEMP
-
 		//PASSWORD LENGTH CASES
 		charLength();
 		
@@ -46,7 +44,7 @@ public class StarApp {
 			if (password.getChoise().equalsIgnoreCase("N")) {
 				choiseLowerCase(password.lowerLength);
 				password.setPassword(choiseLowerCase(0));
-				password.upperLength = password.lowerLength + password.upperLength;
+				password.upperLength += password.lowerLength;
 				
 			}
 			
@@ -59,7 +57,7 @@ public class StarApp {
 			 if (password.getChoise().equalsIgnoreCase("N")) {
 					choiseUpperCase(password.upperLength);	
 					password.setPassword(choiseUpperCase(0).concat(password.getPassword()));
-					password.numberLength = password.numberLength + password.upperLength;
+					password.numberLength += password.upperLength;
 			}
 		
 		view.printNumberCase();
@@ -71,7 +69,7 @@ public class StarApp {
 			if (password.getChoise().equalsIgnoreCase("N")) {
 				choiseUpperCase(password.upperLength);	
 				password.setPassword(choiseUpperCase(0).concat(password.getPassword()));
-				password.symbolLength = password.symbolLength + password.numberLength;
+				password.symbolLength += password.numberLength;
 		}
 		
 		view.printSymbolCase();
@@ -90,10 +88,7 @@ public class StarApp {
 			
 		view.printSaveMesseger();
 		password.setSaveLocal(input.nextLine());
-		savePassword();
-		
-		System.out.println(password.getPassword());
-		
+		savePassword();		
 		
 		//METODOS
 	}public static String choiseLowerCase (int lowerSize) {
@@ -139,9 +134,9 @@ public class StarApp {
 			System.out.println("\nArquivo foi salvo com sucesso\n");
 
 	}public static String randomChar (String character) {
-		int x = character.length();
-		int z = (int) (x * Math.random());
-		return character.substring(z, z + 1);
+		int x = character.length(); // retorna double
+		int z = (int) (x * Math.random()); //(int) tranforma o x em int.
+		return character.substring(z, z + 1); // .substring só aceita int.
 			
 	}public static int readInterger () {
 		int value = input.nextInt ();
@@ -149,14 +144,7 @@ public class StarApp {
 		return value;
 	
 	}public static int randomLength (int min, int max) {
-		password.randomLength = random.nextInt(max);
-		
-		if(password.randomLength < min) {
-			password.randomLength =  password.randomLength + min;	
-		}	
-		if(password.randomLength > max) {
-			password.randomLength = max;	
-		}
+		password.randomLength = random.nextInt((max - min) + 1) + min ;
 		return password.randomLength;
 	
 	}public static void shuffleString(String s) {
